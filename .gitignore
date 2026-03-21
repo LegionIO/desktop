@@ -1,0 +1,40 @@
+# Tauri build artifacts
+src-tauri/target/
+src-tauri/WixTools/
+
+# Node
+node_modules/
+.pnp
+.pnp.js
+
+# Dependency lock files — committed selectively; skip package-lock here
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# Homebrew / macOS
+.DS_Store
+*.dmg
+
+# Windows
+Thumbs.db
+
+# Build outputs
+dist/
+build/
+*.app
+*.exe
+*.msi
+*.deb
+*.rpm
+*.AppImage
+
+# Logs
+*.log
+npm-debug.log*
+
+# Editor
+.vscode/settings.json
+.idea/
+*.swp
+*.swo

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LegionIO Dashboard</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div id="app">
+
+    <!-- Header -->
+    <header class="header">
+      <div class="header-left">
+        <span class="logo">LegionIO</span>
+        <span class="version">v0.1.0</span>
+      </div>
+      <div class="header-right">
+        <span id="status-dot" class="status-dot status-unknown" title="Node status"></span>
+        <span id="status-label" class="status-label">checking...</span>
+        <button id="btn-refresh" class="btn btn-icon" title="Refresh now">&#8635;</button>
+        <button id="btn-settings" class="btn btn-icon" title="Settings">&#9881;</button>
+      </div>
+    </header>
+
+    <!-- Settings panel (hidden by default) -->
+    <div id="settings-panel" class="settings-panel hidden">
+      <label for="api-base-input">Legion API URL</label>
+      <div class="settings-row">
+        <input id="api-base-input" type="text" class="input" placeholder="http://localhost:9999" />
+        <button id="btn-save-settings" class="btn btn-primary">Save</button>
+      </div>
+    </div>
+
+    <!-- Main content -->
+    <main class="main">
+
+      <!-- Status summary bar -->
+      <section class="section">
+        <div class="summary-bar">
+          <div class="summary-card">
+            <div class="summary-value" id="node-name">—</div>
+            <div class="summary-key">node</div>
+          </div>
+          <div class="summary-card">
+            <div class="summary-value" id="uptime-value">—</div>
+            <div class="summary-key">uptime</div>
+          </div>
+          <div class="summary-card">
+            <div class="summary-value" id="task-count">—</div>
+            <div class="summary-key">tasks</div>
+          </div>
+          <div class="summary-card">
+            <div class="summary-value" id="extension-count">—</div>
+            <div class="summary-key">extensions</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Task list -->
+      <section class="section">
+        <div class="section-header">
+          <h2 class="section-title">Tasks</h2>
+          <span id="task-refresh-ts" class="refresh-ts"></span>
+        </div>
+        <div class="table-wrapper">
+          <table id="task-table" class="table">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Status</th>
+                <th>Extension</th>
+                <th>Runner</th>
+                <th>Method</th>
+                <th>Age</th>
+              </tr>
+            </thead>
+            <tbody id="task-tbody">
+              <tr class="empty-row">
+                <td colspan="6">Loading tasks...</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- Quick invoke form -->
+      <section class="section">
+        <div class="section-header">
+          <h2 class="section-title">Quick Invoke</h2>
+        </div>
+        <form id="invoke-form" class="invoke-form" autocomplete="off">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="inv-extension">Extension</label>
+              <input id="inv-extension" type="text" class="input" placeholder="e.g. node" required />
+            </div>
+            <div class="form-group">
+              <label for="inv-runner">Runner</label>
+              <input id="inv-runner" type="text" class="input" placeholder="e.g. info" required />
+            </div>
+            <div class="form-group">
+              <label for="inv-method">Method</label>
+              <input id="inv-method" type="text" class="input" placeholder="e.g. perform" required />
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group form-group-wide">
+              <label for="inv-params">Params (JSON)</label>
+              <input id="inv-params" type="text" class="input" placeholder="{}" />
+            </div>
+            <div class="form-group form-group-action">
+              <label>&nbsp;</label>
+              <button type="submit" class="btn btn-primary">Invoke</button>
+            </div>
+          </div>
+          <div id="invoke-result" class="invoke-result hidden"></div>
+        </form>
+      </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <span id="last-refresh" class="footer-ts">Never refreshed</span>
+      <span class="footer-sep">|</span>
+      <span>Auto-refresh: 10s</span>
+    </footer>
+
+  </div>
+
+  <script src="api.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
