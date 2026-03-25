@@ -1,0 +1,7 @@
+# Auto-generated from team-config.yml
+# Team: frontend
+#
+# To apply: scripts/apply-codeowners.sh desktop
+
+* @LegionIO/maintainers
+* @LegionIO/frontend
